@@ -13,21 +13,21 @@ ales ca subset al unui limbaj existent
 
 
 **Instrucțiuni:**
-1. Atribuire (Assignment): variabilă ⬅️ expresie;
-2. Intrare/Ieșire (Input/Output): 🖨️(expresie); / citeste(variabilă);
+1. Atribuire (Assignment): variabilă "primeste" expresie;
+2. Intrare/Ieșire (Input/Output): scrie(expresie); / citeste(variabilă);
 3. Selecție (Conditional):
 ```
-❓ (condiție) {
+daca (condiție): 
     // bloc de instrucțiuni
-} altfel {
+ altfel:
     // bloc de instrucțiuni
-}
+sfd
 ```
 4. Ciclare (Loop):
 ```
-🔁 (condiție) {
+repeta (condiție);
     // bloc de instrucțiuni
-}
+stop
 ```
 **Restricții:**
 Identificatori: Pot conține litere, cifre și underscore (_) și trebuie să înceapă cu o literă. Nu pot fi identici cu cuvintele cheie.
@@ -38,7 +38,6 @@ Identificatori: Pot conține litere, cifre și underscore (_) și trebuie să î
 1. Simboluri:
     - operators:
 		* arithmetic: +, -, *, /, %
-		* assignment: ⬅️
         * equality testing: ==, !=
         * order relations: <, <=, >, >=
 		* sequencing: ","
@@ -47,11 +46,11 @@ Identificatori: Pot conține litere, cifre și underscore (_) și trebuie să î
        * int      = int
        * float    = float
        * string   = string
-       * 🖨️      = cout <<
+       * scrie    = cout <<
        * citeste  = cin >>
-       * ❓       = if  (nu sunt sigur daca e operator sau cuvant cheie)
+       * daca     = if  (nu sunt sigur daca e operator sau cuvant cheie)
        * altfel   = else
-       * 🔁      = while
+       * repeta   = while
   
 2. Identificatori
     - identifier = letter [{letter | digit | "_"}]*
@@ -75,23 +74,23 @@ string  : 7
 {       : 8
 }       : 9
 ;       : 10
-⬅️      : 11
-🖨️      : 12
+primeste      : 11
+scrie      : 12
 citeste : 13
 +       : 14
 -       : 15
 *       : 16
 /       : 17
 %       : 18
-🔁      : 19
+repeta      : 19
 !=      : 20
 ==      : 21
 <       : 22
 >       : 23
 <=      : 22
 >=      : 25
-❓      : 26
-🏁      : 27
+daca      : 26
+start      : 27
 "       : 28
 main    : 29
 ```
@@ -109,102 +108,79 @@ main    : 29
 
 
 ```html
-<program> ::= <antet_program> <functie>
-<antet_program> ::= 🏁 (\n)* | 🏁 <declarare> (\n)*
-<functie> ::= <antet_functie> <corp>
-<antet_functie> ::= <tip> ID (<lista_decl>) | <tip> ID ()
-<tip> ::= int | float | string
-<lista_decl_fct> ::= <declarare_fct> , <lista_decl_fct> | <declarare_fct>
-<declarare_fct> ::= <tip> ID
-<corp> ::= { <instr_compusa> }
-<instr_compusa> ::= <instr> <instr_compusa> | <instr>
-<instr> ::= <declarare> | <atribuire> | <instr_citire> | <instr_afisare> | <instr_while> | <instr_if>
-<declarare> ::= <tip> ID ; (\n)* | <tip> <atribuire> (\n)*
-<atribuire> ::= ID = <expr_aritmetica> ;
-<instr_citire> ::= citeste ( ID ) ;
-<instr_afisare> ::= 🖨️ ( <expr_aritmetica> ) ; (\n)*
-<expr_aritmetica> ::= <expr_aritmetica> <op_artimetic> <expr_aritmetica> | ID | CONST
-<op_artimetic> ::= + | - | * | / | %
-<instr_while> ::= 🔁 ( <conditie> ) <corp>
-<conditie> ::= <expr_aritmetica> <op_relational> <expr_aritmetica> | <expr_aritmetica>
-<op_relational> ::= != | == | < | > | <= | >=
-<instr_if> ::= ❓ ( <conditie> ) <corp>
+	<program> ::= “#include <iostream>
+	      int main(){” <lista instr> “}”
+	<lista instr> ::= <instr> <lista instr> | <instr> “;”
+	<instr> ::= <io> | <atr> | <cond> | <rep> | <decl>
+	<io> ::= “citeste” (ID) | “scrie” (ID)
+	<atr>::=  ID “ primeste ” ID | ID “ primeste ” CONST | ID “primeste” <expr>
+	<expr> ::= ID | CONST | ID <op> ID | ID <op> CONST | ID <op> <expr>
+	<op_relational> ::= != | == | < | > | <= | >=
+	<decl> ::=  <type> ID
+	<type>::= “int” | “bool” | “float” | “char” | <cerc>
+	<cerc> ::= “float” ID
+	<instr_if> ::= “daca ” ( <conditie> ) “:” <lista instr> “sfd”
+	<instr_while> ::= “repeta ” (<conditie>) “:” <list instr> “stop”
+	<conditie> ::= <expr_aritmetica> <op_relational> <expr_aritmetica> | <expr_aritmetica>
+	ID ::= ^[_a-zA-Z]([_a-zA-Z0-9]){0,249}$
+	CONST ::= <const_int> | <const_float> | <const_string>
+	<const_int> ::= ^[+-]?[0-9]+$
+	<const_float> ::= ^[+-]?[0-9]+(\.[0-9]*)?$
+	<const_string> ::= ^".*"$
 
-ID ::= (_ | a | b | ... | z | A | B | ... | Z)(_ | a | b | ... | z | A | B | ... | Z | 0 | 1 | ... | 9){0,249}
-CONST ::= <const_int> | <const_float> | <const_string>
-<const_int> ::= (+ | -)?(0 | 1 | ... | 9)+
-<const_float> ::= (+ | -)?(0 | 1 | ... | 9)+ | (+ | -)?(0 | 1 | ... | 9)+\.(0 | 1 | ... | 9)*
-<const_string> ::= ".*"
-
-sau
-ID ::= ^[_a-zA-Z]([_a-zA-Z0-9]){0,249}$
-CONST ::= <const_int> | <const_float> | <const_string>
-<const_int> ::= ^[+-]?[0-9]+$
-<const_float> ::= ^[+-]?[0-9]+(\.[0-9]*)?$
-<const_string> ::= ^".*"$
 ```
 
 ### 2. se cer textele sursa a 3 mini-programe  
 
 1. calculeaza perimetrul si aria cercului de o raza data data
 ```cpp
-🏁
-int main() {
-    float raza;
-    citire (raza);
-
-    float pi = 3.14;
-
-    float P = 2 * pi * raza;
-    float A = pi * raza * raza;
-
-    🖨️ (P);
-    🖨️ (" ");
-    🖨️ (A);
+#include <iostream>
+int main()
+{
+	C cerc;
+	cerc.raza primeste 12;
+	pi CONST primeste 3.14;
+	scrie (cerc.raza*cerc.raza*pi);
+	scrie (cerc.raza*2*pi);
 }
+
 ```
 
 2. determina cmmdc a 2 nr naturale
 ```cpp
-🏁
-
-int main() {
-    int a;
-    int b;
-    
-    citire (a);
-    citire (b);
-
-    int r = -1;
-    🔁 (r != 0) {
-        r = a % b;
-        a = b;
-        b = r;
-    }
-
-    🖨️ (a);
+#include <iostream>
+int main()
+{
+	int N1 primeste 8;
+	int N2 primeste 10;
+	int R primeste 0;
+	repeta (N2!=0):
+	R primeste N1%N2;
+	N1 primeste N2;
+	N2 primeste R;
+	stop;
+	scrie (N1);
 }
+
 ```
 
 3. calculeaza suma a n numere citite de la tastatura 
 ```cpp
-🏁
-
-int main() {
-    int sum = 0;
-    int n;
-    int x;
-    
-    citire (n);
-    while (n > 0)
-    {
-        citire (x);
-        sum = sum + x;
-        n = n - 1;
-    }
-
-    🖨️ (sum);
+#include <iostream>
+int main()
+{
+	int N;
+	int S primeste 0;
+	int V;
+	citeste N;
+	repeta (N>0):
+		N--;
+		citeste V;
+		S+=V;
+		stop;
+	scrie (S);
 }
+
 ```
 
 ### 3. Se cer textele sursa a doua programe care contin erori conform MLP-ului definit:
