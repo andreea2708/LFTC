@@ -74,23 +74,23 @@ string  : 7
 {       : 8
 }       : 9
 ;       : 10
-primeste      : 11
-scrie      : 12
+primeste: 11
+scrie   : 12
 citeste : 13
 +       : 14
 -       : 15
 *       : 16
 /       : 17
 %       : 18
-repeta      : 19
+repeta  : 19
 !=      : 20
 ==      : 21
 <       : 22
 >       : 23
 <=      : 22
 >=      : 25
-daca      : 26
-start      : 27
+daca    : 26
+start   : 27
 "       : 28
 main    : 29
 ```
@@ -188,25 +188,18 @@ int main()
 1. Unul dintre programe contine doua erori care sunt in acelasi timp erori in limbajul original (pentru care MLP defineste un subset)
 
 ```cpp
-🏁
-
 int main() {
     float a // eroare
-
     a = 15.4;
-
     in b; // eroare
     citire (b);
-
-    cout << a + 2;
+    cout<<a + 2;
 }
 ```
 
 2. Al doilea program contine doua erori conform MLP, dar care nu sunt erori in limbajul original. Se cere ca acesta sa fie compilat si executat in limbajul original ales
 
 ```cpp
-🏁
-
 int main() {
     int a, b; // eroare - fiecare pe o alta linie in MLP
 
@@ -223,5 +216,5 @@ int main() {
 
 ### Diferente MLP si C++
 
-1. nu exista for
+1. nu declaram pe o singura linie
 2. nu se pot declara vectori
