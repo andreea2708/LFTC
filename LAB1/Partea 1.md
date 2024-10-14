@@ -118,7 +118,7 @@ main    : 29
 	<op_relational> ::= != | == | < | > | <= | >=
 	<decl> ::=  <type> ID
 	<type>::= “int” | “bool” | “float” | “char” | <cerc>
-	<cerc> ::= “float” ID
+	<struct_def> ::= "struct"  NAME "{" <decl>"," "}"";"
 	<instr_if> ::= “daca ” ( <conditie> ) “:” <lista instr> “sfd”
 	<instr_while> ::= “repeta ” (<conditie>) “:” <list instr> “stop”
 	<conditie> ::= <expr_aritmetica> <op_relational> <expr_aritmetica> | <expr_aritmetica>
