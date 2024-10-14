@@ -117,7 +117,7 @@ main    : 29
 	<expr> ::= ID | CONST | ID <op> ID | ID <op> CONST | ID <op> <expr>
 	<op_relational> ::= != | == | < | > | <= | >=
 	<decl> ::=  <type> ID
-	<type>::= “int” | “bool” | “float” | “char” | <cerc>
+	<type>::= “int” | “bool” | “float” | “char” | <struct_def>
 	<struct_def> ::= "struct"  NAME "{" <decl>"," "}"";"
 	<instr_if> ::= “daca ” ( <conditie> ) “:” <lista instr> “sfd”
 	<instr_while> ::= “repeta ” (<conditie>) “:” <list instr> “stop”
