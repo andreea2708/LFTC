@@ -48,7 +48,7 @@ Identificatori: Pot conține litere, cifre și underscore (_) și trebuie să î
        * string   = string
        * scrie    = cout <<
        * citeste  = cin >>
-       * daca     = if  (nu sunt sigur daca e operator sau cuvant cheie)
+       * daca     = if
        * altfel   = else
        * repeta   = while
   
